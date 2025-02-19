@@ -137,7 +137,7 @@ class WhatsappService {
 							sessionId,
 							undefined,
 							"error",
-							`Unable to generate QR code: ${e.message}`,
+							`Unable to generate QR code: ${e}`,
 						);
 						res.status(500).json({ error: "Unable to generate QR" });
 					}
@@ -159,7 +159,7 @@ class WhatsappService {
 						sessionId,
 						undefined,
 						"error",
-						`Unable to generate QR code: ${e.message}`,
+						`Unable to generate QR code: ${e}`,
 					);
 				}
 			}
@@ -257,10 +257,11 @@ class WhatsappService {
 	}
 
 	static getSessionStatus(session: Session) {
-		const state = ["CONNECTING", "CONNECTED", "DISCONNECTING", "DISCONNECTED"];
-		let status = state[(session.ws as WebSocketType).readyState];
-		status = session.user ? "AUTHENTICATED" : status;
-		return session.waStatus !== WAStatus.Unknown ? session.waStatus : status.toLowerCase();
+		// const state = ["CONNECTING", "CONNECTED", "DISCONNECTING", "DISCONNECTED"];
+		// let status = state[(session.ws as WebSocketType).readyState];
+		// status = session.user ? "AUTHENTICATED" : status;
+		// return session.waStatus !== WAStatus.Unknown ? session.waStatus : status.toLowerCase();
+		return session.waStatus;
 	}
 
 	static listSessions() {

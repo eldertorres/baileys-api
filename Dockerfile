@@ -1,18 +1,18 @@
-FROM node:20-alpine AS builder
+FROM node:20-slim AS builder
 
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y \
+        git \
+        && rm -rf /var/lib/apt/lists/*
+
 COPY package*.json .
-
-# Install git
-RUN apk add --no-cache git
-
-RUN npm install --quiet
-
-RUN npx prisma migrate
 
 COPY . .
 
+RUN npm install && \ 
+    npm run build
+
 EXPOSE 3000
 
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "start" ]
