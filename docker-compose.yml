@@ -35,7 +35,7 @@ services:
       - "3000:3000"
     environment:
       DATABASE_URL: 'postgres://postgres:2024pass@baileys-db:5432/bailey'
-      URL_WEBHOOK: 'https://api-sandbox.appnext.fit/api/NextMessage/MensagemRecebidaWebhook'
+      URL_WEBHOOK: 'https://REDACTED/api/REDACTED/MensagemRecebidaWebhook'
     depends_on:
       - baileys-db
       - baileys-migration-init
